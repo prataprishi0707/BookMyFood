@@ -1,0 +1,164 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodMyShow - Order Delicious Food</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="Club logo .jpg" alt="Club Logo" style="margin: right 150px;">
+                <h1>🍕BookMyFood</h1>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    <main>
+        <div class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">🎬 Now Serving
+                        <img src="image copy.png" alt="food logo" style="width: 20px; height: 20px; margin-left: 10px;">
+                    </div>
+                    <h2 class="hero-title">Book Your Food Experience Now</h2>
+                    <p class="hero-subtitle">Cinema-quality flavors delivered to your table by one and only Sports Club</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">Happy Customers</div>
+                        </div>
+                        <div class="stat-divider">|</div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.8★</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat-divider">|</div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Available</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <section class="food-section">
+                <h3 class="section-title">⭐ Featured Menu</h3>
+               
+                <p class="section-subtitle">Handpicked favorites just for you</p>
+                <div class="food-grid">
+                    <div class="food-card">
+                        <div class="food-header">
+                            <div class="food-badge">🔥 Popular</div>
+                            <div class="food-rating">4.9★</div>
+                        </div>
+                        <div class="food-emoji">🥣</div>
+                        <div class="food-info">
+                            <h4 class="food-name">White Sauce Pasta</h4>
+                            <p class="food-description">Creamy alfredo with herbs & parmesan</p>
+                            <div class="food-details">
+                                <span class="prep-time">⏱️ 15 mins</span>
+                                <span class="food-type">🥛 Vegetarian</span>
+                            </div>
+                            <div class="food-price">₹120</div>
+                            <button class="order-btn" onclick="orderItem('White Sauce Pasta', 120)">
+                                <span class="btn-icon">🛒</span>
+                                Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="food-card">
+                        <div class="food-header">
+                            <div class="food-badge">👑 Premium</div>
+                            <div class="food-rating">4.7★</div>
+                        </div>
+                        <div class="food-emoji">🍞</div>
+                        <div class="food-info">
+                            <h4 class="food-name">Cheese Garlic Bread</h4>
+                            <p class="food-description">Crispy sourdough with melted mozzarella</p>
+                            <div class="food-details">
+                                <span class="prep-time">⏱️ 10 mins</span>
+                                <span class="food-type">🧀 Cheesy</span>
+                            </div>
+                            <div class="food-price">₹80</div>
+                            <button class="order-btn" onclick="orderItem('Cheese Garlic Bread', 80)">
+                                <span class="btn-icon">🛒</span>
+                                Order Now
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="food-card">
+                        <div class="food-header">
+                            <div class="food-badge">❄️ Best Selling</div>
+                            <div class="food-rating">5.0★</div>
+                        </div>
+                        <div class="food-emoji">🥤</div>
+                        <div class="food-info">
+                            <h4 class="food-name">Oreo Shake</h4>
+                            <p class="food-description">Thick vanilla shake with crushed oreos</p>
+                            <div class="food-details">
+                                <span class="prep-time">⏱️ 5 mins</span>
+                                <span class="food-type">🍦 Cold Beverage</span>
+                            </div>
+                            <div class="food-price">₹100</div>
+                            <button class="order-btn" onclick="orderItem('Oreo Shake', 100)">
+                                <span class="btn-icon">🛒</span>
+                                Order Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Follow us on instagram</h4>
+                      <a href="https://www.instagram.com/sportsclub_uai" target="_blank" style="text-decoration: none; color: rgb(248, 248, 248); font-size: 18px; font-weight: bold;">
+    <img src="image.png" alt="Sportsclub" style="width: 50px; height: 50px; vertical-align: middle;">
+    <span style="margin-left: 8px;">@sportsclub_uai</span>
+  </a>
+
+                   
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#menu">Menu</a>
+                    <a href="order.html">Order Now</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📞 will update</p>
+                    <p>📧 Contact president</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodMyShow. All rights reserved. | Made with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function orderItem(itemName, price) {
+            // Store selected item in sessionStorage
+            sessionStorage.setItem('selectedItem', itemName);
+            sessionStorage.setItem('selectedPrice', price);
+            // Redirect to order page
+            window.location.href = 'order.html';
+        }
+    </script>
+</body>
+</html>

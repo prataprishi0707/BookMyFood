@@ -1,0 +1,139 @@
+<!-- ORDER.HTML -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food - FoodMyShow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1><a href="index.html">🍕 Book My Food</a></h1>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="order-section">
+                <h2 class="page-title">Place Your Order</h2>
+                
+                <div class="order-form-container">
+                    <form action="https://formspree.io/f/xyzdzalk" method="POST" class="order-form" id="orderForm">
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foodItem">Select Item *</label>
+                            <select id="foodItem" name="item" required>
+                            
+                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
+                                <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
+                                <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" required>
+                        </div>
+
+                         <div class="form-group">
+                            <label for="foodItem">Select Item(if you need another item) </label>
+                            <select id="foodItem" name="item" >
+                               <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
+                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
+                                <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" >
+                        </div>
+                    
+                         <div class="form-group">
+                            <label for="foodItem">Select Item(if you need another item) </label>
+                            <select id="foodItem" name="item" >
+                                 <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
+                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
+                                <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
+                               
+                            </select>
+                        </div>
+                        
+
+                        <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentMethod">Payment Method *</label>
+                            <select id="paymentMethod" name="payment_method" required>
+                                <option value="">Select payment method</option>
+                                <option value="Cash on Delivery">Cash on Delivery</option>
+                                <option value="UPI">UPI</option>
+
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Special Instructions</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Any special requests..."></textarea>
+                        </div>
+
+                        <!-- Hidden input for redirect -->
+                      
+                        <input type="hidden" name="_next" value="thankyou.html">
+                        <input type="hidden" name="_subject" value="New Food Order Received">
+
+                        <button type="submit" class="submit-btn">🎫 Book My Food Ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 FoodMyShow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Pre-fill form if item was selected from homepage
+        window.addEventListener('DOMContentLoaded', function() {
+            const selectedItem = sessionStorage.getItem('selectedItem');
+            const selectedPrice = sessionStorage.getItem('selectedPrice');
+            
+            if (selectedItem && selectedPrice) {
+                const select = document.getElementById('foodItem');
+                const optionValue = `${selectedItem} - ₹${selectedPrice}`;
+                
+                // Find and select the matching option
+                for (let option of select.options) {
+                    if (option.text.includes(selectedItem)) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+                
+                // Clear session storage
+                sessionStorage.removeItem('selectedItem');
+                sessionStorage.removeItem('selectedPrice');
+            }
+        });
+    </script>
+</body>
+</html>
