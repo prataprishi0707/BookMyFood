@@ -1,4 +1,3 @@
-<!-- ORDER.HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Food - FoodMyShow</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* QR Code styles */
+        .qr-container {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .qr-container.show {
+            display: block;
+        }
+        
+        .qr-image {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+                       border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .qr-instructions {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .qr-note {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .payment-confirmation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 2px solid #d4a842;
+            border-radius: 6px;
+            display: none;
+            font-size: 16px;
+            color: #2c2c2c !important;
+        }
+        
+        .payment-confirmation.show {
+            display: block;
+        }
+        
+        .confirmation-checkbox {
+            margin-right: 10px;
+            transform: scale(1.3);
+            accent-color: #28a745;
+        }
+        
+        .confirmation-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a1a1a !important;
+        }
+        
+        .confirmation-label:hover {
+            color: #000000 !important;
+        }
+        
+        .confirmation-label span {
+            color: #1a1a1a !important;
+            font-weight: 600;
+        }
+
+        /* Select thumbnail row */
+        .select-row {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            align-items: center;
+            gap: 10px;
+        }
+        .select-thumb {
+            width: 56px;
+            height: 56px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: #fff;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,7 +114,7 @@
                 <h2 class="page-title">Place Your Order</h2>
                 
                 <div class="order-form-container">
-                    <form action="https://formspree.io/f/xyzdzalk" method="POST" class="order-form" id="orderForm">
+                    <form action="https://formspree.io/f/mpwjqeyb" method="POST" class="order-form" id="orderForm">
                         <div class="form-group">
                             <label for="customerName">Full Name *</label>
                             <input type="text" id="customerName" name="name" required>
@@ -32,60 +122,81 @@
 
                         <div class="form-group">
                             <label for="foodItem">Select Item *</label>
-                            <select id="foodItem" name="item" required>
-                            
-                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
-                                <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
-                                <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
-                            </select>
+                            <div class="select-row">
+                                <img id="preview1" class="select-thumb" alt="Selected item preview">
+                                <select id="foodItem" name="item" required>
+                                    <option value="White Sauce Pasta - ₹120">White Sauce Pasta - ₹120</option>
+                                    <option value="Cheese Garlic Bread - ₹80">Cheese Garlic Bread - ₹80</option>
+                                    <option value="Oreo Shake - ₹100">Oreo Shake - ₹100</option>
+                                </select>
+                            </div>
                         </div>
                          <div class="form-group">
                             <label for="quantity">Quantity *</label>
-                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" required>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
                         </div>
 
                          <div class="form-group">
-                            <label for="foodItem">Select Item(if you need another item) </label>
-                            <select id="foodItem" name="item" >
-                               <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
-                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
-                                <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
-                            </select>
+                            <label for="foodItem2">Select Item(if you need another item) </label>
+                            <div class="select-row">
+                                <img id="preview2" class="select-thumb" alt="Selected item preview">
+                                <select id="foodItem2" name="item2">
+                                    <option value="choose you item">Select to choose </option>
+                                    <option value="Cheese Garlic Bread - ₹80">Cheese Garlic Bread - ₹80</option>
+                                    <option value="White Sauce Pasta - ₹120">White Sauce Pasta - ₹120</option>
+                                    <option value="Oreo Shake - ₹100">Oreo Shake - ₹100</option>
+                                </select>
+                            </div>
                         </div>
                          <div class="form-group">
-                            <label for="quantity">Quantity *</label>
-                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" >
+                            <label for="quantity2">Quantity *</label>
+                            <input type="number" id="quantity2" name="quantity2" min="0" max="10" value="0">
                         </div>
                     
                          <div class="form-group">
-                            <label for="foodItem">Select Item(if you need another item) </label>
-                            <select id="foodItem" name="item" >
-                                 <option value="Oreo Shake - ₹100">🥤 Oreo Shake - ₹100</option>
-                                <option value="White Sauce Pasta - ₹120">🥣 White Sauce Pasta - ₹120</option>
-                                <option value="Cheese Garlic Bread - ₹80">🍞 Cheese Garlic Bread - ₹80</option>
-                               
-                            </select>
+                            <label for="foodItem3">Select Item(if you need another item) </label>
+                            <div class="select-row">
+                                <img id="preview3" class="select-thumb" alt="Selected item preview">
+                                <select id="foodItem3" name="item3">
+                                    <option value="choose you item">Select to choose </option>
+                                    <option value="Oreo Shake - ₹100">Oreo Shake - ₹100</option>
+                                    <option value="White Sauce Pasta - ₹120">White Sauce Pasta - ₹120</option>
+                                    <option value="Cheese Garlic Bread - ₹80">Cheese Garlic Bread - ₹80</option>
+                                </select>
+                            </div>
                         </div>
-                        
 
                         <div class="form-group">
-                            <label for="quantity">Quantity *</label>
-                            <input type="number" id="quantity" name="quantity" min="0" max="10" value="0" >
+                            <label for="quantity3">Quantity *</label>
+                            <input type="number" id="quantity3" name="quantity3" min="0" max="10" value="0">
                         </div>
 
                         <div class="form-group">
                             <label for="paymentMethod">Payment Method *</label>
                             <select id="paymentMethod" name="payment_method" required>
                                 <option value="">Select payment method</option>
-                                <option value="Cash on Delivery">Cash on Delivery</option>
-                                <option value="UPI">UPI</option>
-
+                                
+                                <option value="QR">QR CODE</option>
                             </select>
+                            
+                            <!-- QR Code Container -->
+                            <div class="qr-container" id="qrContainer">
+                                <div class="qr-instructions">
+                                    <strong>📱 Scan QR Code to Pay</strong>
+                                </div>
+                                <!-- Replace 'your-qr-image.png' with the actual path to your QR code image -->
+                                <img src="qr.png" alt="UPI Payment QR Code" class="qr-image" id="qrImage">
+                                <div class="qr-note">
+                                    Scan with any UPI app (PhonePe, Paytm, Google Pay, etc.)
+                                </div>
+                                
+                                
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" placeholder="Enter 10-digit mobile number" required>
                         </div>
 
                         <div class="form-group">
@@ -94,7 +205,6 @@
                         </div>
 
                         <!-- Hidden input for redirect -->
-                      
                         <input type="hidden" name="_next" value="thankyou.html">
                         <input type="hidden" name="_subject" value="New Food Order Received">
 
@@ -112,27 +222,221 @@
     </footer>
 
     <script>
-        // Pre-fill form if item was selected from homepage
+        // Dynamic ordering: selected item first, others follow preference (Oreo → Garlic → White)
         window.addEventListener('DOMContentLoaded', function() {
-            const selectedItem = sessionStorage.getItem('selectedItem');
-            const selectedPrice = sessionStorage.getItem('selectedPrice');
-            
-            if (selectedItem && selectedPrice) {
-                const select = document.getElementById('foodItem');
-                const optionValue = `${selectedItem} - ₹${selectedPrice}`;
-                
-                // Find and select the matching option
-                for (let option of select.options) {
-                    if (option.text.includes(selectedItem)) {
-                        option.selected = true;
-                        break;
-                    }
+            const itemMeta = {
+                'White Sauce Pasta': { image: 'pasta.avif', price: 80 },
+                'Cheese Garlic Bread': { image: 'image copy.png', price: 80 },
+                'Oreo Shake': { image: 'oreoshake.jpeg', price: 80 }
+            };
+
+            const preference = ['Oreo Shake', 'Cheese Garlic Bread', 'White Sauce Pasta'];
+
+            function getOrderedNames(selectedName) {
+                const names = [...preference];
+                if (!selectedName || !names.includes(selectedName)) return names;
+                return [selectedName, ...names.filter(n => n !== selectedName)];
+            }
+
+            function buildOption(name) {
+                const meta = itemMeta[name];
+                const option = document.createElement('option');
+                option.value = `${name} - ₹${meta.price}`;
+                option.textContent = `${name} - ₹${meta.price}`;
+                return option;
+            }
+
+            function rebuildSelect(selectId, orderedNames, withPlaceholder = false) {
+                const select = document.getElementById(selectId);
+                while (select.firstChild) select.removeChild(select.firstChild);
+                if (withPlaceholder) {
+                    const ph = document.createElement('option');
+                    ph.value = 'choose you item';
+                    ph.textContent = 'Select to choose ';
+                    select.appendChild(ph);
                 }
-                
-                // Clear session storage
+                orderedNames.forEach(name => select.appendChild(buildOption(name)));
+            }
+
+            // Determine preselected item (from sessionStorage or current selection)
+            const ssItem = sessionStorage.getItem('selectedItem');
+            const selectedPrice = sessionStorage.getItem('selectedPrice');
+            const firstSelect = document.getElementById('foodItem');
+            let selectedName = ssItem || (firstSelect.value ? firstSelect.value.split(' - ₹')[0].replace(/^[^\s]*\s?/, '').trim() : '');
+            // Note: above replace trims possible emoji in front if any
+
+            const ordered = getOrderedNames(selectedName);
+
+            // Rebuild selects
+            rebuildSelect('foodItem', ordered, false);
+            document.getElementById('foodItem').selectedIndex = 0; // ensure selected first
+            rebuildSelect('foodItem2', ordered, true);
+            rebuildSelect('foodItem3', ordered, true);
+            // Auto-select next two items in 2nd and 3rd selects
+            const s2 = document.getElementById('foodItem2');
+            const s3 = document.getElementById('foodItem3');
+            if (s2 && s2.options.length > 2) s2.selectedIndex = 2; // next after selected (skip placeholder and first)
+            if (s3 && s3.options.length > 3) s3.selectedIndex = 3; // third item
+            // Update thumbnails
+            function updateThumb(selectEl, imgEl){
+                const name = selectEl.value.split(' - ₹')[0];
+                imgEl.src = itemMeta[name].image;
+                imgEl.alt = name;
+            }
+            updateThumb(document.getElementById('foodItem'), document.getElementById('preview1'));
+            updateThumb(document.getElementById('foodItem2'), document.getElementById('preview2'));
+            updateThumb(document.getElementById('foodItem3'), document.getElementById('preview3'));
+
+            // Clear session storage
+            if (ssItem && selectedPrice) {
                 sessionStorage.removeItem('selectedItem');
                 sessionStorage.removeItem('selectedPrice');
             }
+
+            // If user changes first select, reorder others accordingly
+            document.getElementById('foodItem').addEventListener('change', function() {
+                const newSelected = this.value.split(' - ₹')[0];
+                const newOrdered = getOrderedNames(newSelected);
+                rebuildSelect('foodItem2', newOrdered, true);
+                rebuildSelect('foodItem3', newOrdered, true);
+                const s2c = document.getElementById('foodItem2');
+                const s3c = document.getElementById('foodItem3');
+                if (s2c && s2c.options.length > 2) s2c.selectedIndex = 2;
+                if (s3c && s3c.options.length > 3) s3c.selectedIndex = 3;
+                updateThumb(document.getElementById('foodItem'), document.getElementById('preview1'));
+                updateThumb(s2c, document.getElementById('preview2'));
+                updateThumb(s3c, document.getElementById('preview3'));
+            });
+        });
+
+        // QR Code display functionality
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            const qrContainer = document.getElementById('qrContainer');
+            const paymentConfirmation = document.getElementById('paymentConfirmation');
+            
+            if (this.value === 'QR') {
+                qrContainer.classList.add('show');
+                // Show payment confirmation after a short delay
+                setTimeout(() => {
+                    paymentConfirmation.classList.add('show');
+                }, 500);
+            } else {
+                qrContainer.classList.remove('show');
+                paymentConfirmation.classList.remove('show');
+                // Uncheck the confirmation if payment method changes
+                document.getElementById('paymentDone').checked = false;
+            }
+        });
+
+        // Phone number input restriction - only allow numbers
+        document.getElementById('phone').addEventListener('keypress', function(e) {
+            // Allow only numbers (0-9)
+            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'Home', 'End', 'ArrowLeft', 'ArrowRight', 'Clear', 'Copy', 'Paste'].includes(e.key)) {
+                e.preventDefault();
+            }
+        });
+
+        // Prevent pasting non-numeric content
+        document.getElementById('phone').addEventListener('paste', function(e) {
+            e.preventDefault();
+            let paste = (e.clipboardData || window.clipboardData).getData('text');
+            paste = paste.replace(/\D/g, ''); // Remove non-digits
+            if (paste.length <= 10) {
+                this.value = paste;
+                validatePhoneNumber(this);
+            }
+        });
+
+        // Remove any non-numeric characters on input
+        document.getElementById('phone').addEventListener('input', function(e) {
+            // Remove non-numeric characters
+            let value = this.value.replace(/\D/g, '');
+            // Limit to 10 digits
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+            this.value = value;
+            validatePhoneNumber(this);
+        });
+
+        document.getElementById('phone').addEventListener('blur', function() {
+            validatePhoneNumber(this);
+        });
+
+        function validatePhoneNumber(phoneInput) {
+            const phoneValue = phoneInput.value.replace(/\D/g, ''); // Remove non-digits
+            const phoneRegex = /^[6-9]\d{9}$/; // Indian mobile number format
+            const errorElement = document.getElementById('phoneError');
+            
+            // Remove existing error message
+            if (errorElement) {
+                errorElement.remove();
+            }
+            
+            // Reset styling
+            phoneInput.style.borderColor = '';
+            phoneInput.style.backgroundColor = '';
+            
+            if (phoneValue && !phoneRegex.test(phoneValue)) {
+                // Invalid phone number
+                phoneInput.style.borderColor = '#e74c3c';
+                phoneInput.style.backgroundColor = '#fdf2f2';
+                
+                // Create error message
+                const errorDiv = document.createElement('div');
+                errorDiv.id = 'phoneError';
+                errorDiv.style.color = '#e74c3c';
+                errorDiv.style.fontSize = '12px';
+                errorDiv.style.marginTop = '5px';
+                errorDiv.textContent = 'Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9';
+                
+                phoneInput.parentNode.appendChild(errorDiv);
+                return false;
+            } else if (phoneValue && phoneRegex.test(phoneValue)) {
+                // Valid phone number
+                phoneInput.style.borderColor = '#28a745';
+                phoneInput.style.backgroundColor = '#f8fff9';
+                return true;
+            }
+            
+            return phoneValue === ''; // Return true if empty (not required validation here)
+        }
+
+        // Form submission validation
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            const phoneInput = document.getElementById('phone');
+            const isPhoneValid = validatePhoneNumber(phoneInput);
+            
+            if (phoneInput.value && !isPhoneValid) {
+                e.preventDefault();
+                phoneInput.focus();
+                
+                // Show alert
+                alert('Please enter a valid 10-digit Indian mobile number before submitting.');
+                return false;
+            }
+            
+            // Additional validation for QR payment confirmation
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const paymentConfirmed = document.getElementById('paymentDone').checked;
+            
+            if (paymentMethod === 'QR' && !paymentConfirmed) {
+                e.preventDefault();
+                alert('Please confirm that you have completed the payment before submitting.');
+                document.getElementById('paymentDone').focus();
+                return false;
+            }
+        });
+
+        // Handle QR image error (in case image doesn't load)
+        document.getElementById('qrImage').addEventListener('error', function() {
+            this.style.display = 'none';
+            const container = document.getElementById('qrContainer');
+            const errorMsg = document.createElement('div');
+            errorMsg.style.color = '#e74c3c';
+            errorMsg.style.padding = '20px';
+            errorMsg.innerHTML = '❌ QR Code image not found. Please contact us for payment details.';
+            container.appendChild(errorMsg);
         });
     </script>
 </body>

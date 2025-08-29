@@ -53,37 +53,37 @@ body::before {
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the nav-container */
+    justify-content: center; 
     padding: 10px 20px;
 }
 
 .nav-container {
     width: 100%;
-    max-width: 1200px; /* Optional: set a max-width */
+    max-width: 1200px; 
     display: flex;
-    justify-content: space-between; /* This creates space between items */
-    align-items: center;
-    position: relative; /* For absolute positioning of centered text */
+    justify-content: space-between; 
+    position: relative; 
 }
 
 .logo {
     display: flex;
     align-items: center;
-    /* Removed margin-right: 150px; to keep logo at far left */
+    text-decoration: solid;
+    font-style: bold;
+    font-size: larger;
 }
 
 .logo img {
     height: 100px;
     width: auto;
-    /* Removed margin-right: 150px; to keep logo at far left */
 }
 
 .logo h1 {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Perfect center alignment */
+    transform: translateX(-50%); 
     margin: 0;
-    color: #ffffff; /* Adjust color as needed */
+    color: #ffffff; 
 }
 
 .logo h1 a {
@@ -93,7 +93,7 @@ body::before {
 
 
 
-/* Enhanced Hero Section */
+
 .hero-section {
     background: linear-gradient(135deg, #ff0000, #cc0000, #990000);
     padding: 4rem 0;
@@ -938,7 +938,6 @@ body::before {
     animation: fadeIn 1s ease-out 1s both;
 }
 
-/* Loading Animation for Page Transitions */
 @keyframes pageLoad {
     0% { 
         opacity: 0;
@@ -956,7 +955,6 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Scroll-triggered animations */
 @media (prefers-reduced-motion: no-preference) {
     .fade-in {
         opacity: 0;
@@ -992,7 +990,6 @@ a {
     }
 }
 
-/* Enhanced Button Animations */
 button:not(.order-btn):not(.submit-btn) {
     position: relative;
     overflow: hidden;
@@ -1017,7 +1014,6 @@ button:not(.order-btn):not(.submit-btn):hover::before {
     height: 200%;
 }
 
-/* Mobile Responsiveness with Enhanced Animations */
 @media (max-width: 768px) {
     .hero-title {
         font-size: 2.2rem;
@@ -1173,7 +1169,6 @@ button:not(.order-btn):not(.submit-btn):hover::before {
     }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -1193,7 +1188,6 @@ button:not(.order-btn):not(.submit-btn):hover::before {
     background: linear-gradient(180deg, #ff3333, #ff0000);
 }
 
-/* Selection Styling */
 ::selection {
     background: rgba(255, 0, 0, 0.3);
     color: white;
@@ -1218,7 +1212,6 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.3);
 }
 
-/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1229,7 +1222,6 @@ textarea:focus {
     }
 }
 
-/* Print Styles */
 @media print {
     * {
         background: white !important;
@@ -1248,4 +1240,38 @@ textarea:focus {
         margin-bottom: 1rem;
         border: 1px solid #ccc;
     }
+}
+
+/* navbar images */
+.nav-images {
+    display: grid;
+    grid-template-columns: repeat(2, 48px);
+    gap: 10px 12px;
+    align-items: center;
+    justify-items: center;
+}
+
+.nav-img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    padding: 2px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-img:nth-child(odd) {
+    transform: rotate(-2deg);
+}
+
+.nav-img:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.nav-img:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
